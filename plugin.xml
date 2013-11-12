@@ -1,0 +1,54 @@
+<plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    id="com.investmentsillustrated.pngdata2imageplugin"
+    version="0.1.0">
+
+    <name>pngdata 2 Image</name>
+
+    <engines>
+        <engine name="cordova" version=">=3.0.0" />
+    </engines>
+
+    <description>This plugin allows you to save a dataURI to an Android or iOS photo library.</description>
+    <author>Investments Illustrated</author>
+    <keywords>datauri,png,image,photo library</keywords>
+
+    <license>MIT</license>
+
+    <js-module src="www/pngdata2imageplugin.js" name="pngdata2imageplugin">
+        <clobbers target="window.pngdata2imageplugin" />
+    </js-module>
+
+    <!-- ios -->
+    <platform name="ios">
+        <config-file target="config.xml" parent="/*">
+            <feature name="pngdata2imageplugin">
+                <param name="ios-package" value="pngdata2imageplugin"/>
+                <param name="onload" value="true" />
+            </feature>
+        </config-file>
+
+        <header-file src="src/ios/pngdata2imageplugin.h" />
+
+        <source-file src="src/ios/pngdata2imageplugin.m"
+            compiler-flags="-fno-objc-arc" />
+    </platform>
+
+    <!-- android -->
+    <platform name="android">
+
+        <config-file target="AndroidManifest.xml" parent="/*">
+            <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+        </config-file>
+
+        <config-file target="res/xml/config.xml" parent="/*">
+          <feature name="pngdata2imageplugin" >
+            <param name="android-package" value="com.investmentsillustrated.pngdata2imageplugin.pngdata2imageplugin"/>
+          </feature>
+        </config-file>
+
+        <source-file src="src/android/pngdata2imageplugin.java" 
+            target-dir="src/com/investmentsillustrated/pngdata2imageplugin" />
+
+    </platform>
+</plugin>
